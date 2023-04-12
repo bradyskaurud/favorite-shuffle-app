@@ -1,16 +1,25 @@
-import React from 'react';
+import NavigationBar from "./NavigationBar";
 
-interface AuthenticationProps {
-  onAuthenticate: () => void;
+const hanldeAuthenticate = async () => {
+  const response = await fetch('http://localhost:3001/auth/connect');
+  console.log(response);
 }
 
-const Authentication: React.FC<AuthenticationProps> = ({ onAuthenticate }) => {
+function AuthenticateButton() {
+  return (
+    <button onClick={hanldeAuthenticate}>Log in with Spotify</button>
+  );
+}
+
+function AuthenticationPage() {
   return (
     <div className="authentication">
+      <h1>Favorite Shuffle</h1>
+      <NavigationBar />
       <p>Please log in with your Spotify account to continue.</p>
-      <button onClick={onAuthenticate}>Log in with Spotify</button>
+      <AuthenticateButton />
     </div>
   );
 };
 
-export default Authentication;
+export default AuthenticationPage;
